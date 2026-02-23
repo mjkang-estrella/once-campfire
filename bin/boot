@@ -1,7 +1,15 @@
 #!/usr/bin/env ruby
 
 require "json"
+require "securerandom"
 require "yaml"
+
+# Open-source/demo fallback: allow booting without a configured secret.
+# This key is ephemeral per instance start, so sessions/signed tokens can be invalidated on restart.
+if ENV["SECRET_KEY_BASE"].to_s.empty?
+  ENV["SECRET_KEY_BASE"] = SecureRandom.hex(64)
+  warn "[boot] SECRET_KEY_BASE is not set; generated an ephemeral value. Set SECRET_KEY_BASE in production."
+end
 
 class ProcessMonitor
   SIGNALS = %w[ INT TERM CLD ]
