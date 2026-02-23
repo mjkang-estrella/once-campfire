@@ -26,6 +26,7 @@
 /storage/*
 !/storage/
 !/storage/.keep
+/dump.rdb
 
 # Ignore development credentials
 /config/credentials.yml.enc
