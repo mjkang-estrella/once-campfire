@@ -85,8 +85,10 @@ class BoostingMessagesTest < ApplicationSystemTestCase
 
   private
     def fill_in_boost_input(text)
-      click_on "New boost"
-      fill_in "boost[content]", with: text
+      with_stale_retry do
+        click_on "New boost"
+        fill_in "boost[content]", with: text
+      end
     end
 
     def assert_boost_input_value(text)

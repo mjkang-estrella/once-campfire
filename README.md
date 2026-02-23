@@ -11,11 +11,22 @@ expect, including:
 - @mentions
 - API, with support for bot integrations
 
+## Toolchain
+
+- Ruby: `3.4.5` (see `.ruby-version`)
+- Bundler: `2.5.9` (from `Gemfile.lock`)
+
+If you see `You must use Bundler 2 or greater with this lockfile`, run commands with project Ruby via `mise`:
+
+    mise x ruby@3.4.5 -- bundle install
+
 ## Deploying with Docker
 
 Campfire's Docker image contains everything needed for a fully-functional,
 single-machine deployment. This includes the web app, background jobs, caching,
 file serving, and SSL.
+
+Make sure a Docker daemon is running before you build or run the image.
 
 To persist storage of the database and file attachments, map a volume to `/rails/storage`.
 
@@ -40,13 +51,19 @@ For example:
       --env SECRET_KEY_BASE=$YOUR_SECRET_KEY_BASE \
       --env VAPID_PUBLIC_KEY=$YOUR_PUBLIC_KEY \
       --env VAPID_PRIVATE_KEY=$YOUR_PRIVATE_KEY \
-      --env TLS_DOMAIN=chat.example.com \
+      --env SSL_DOMAIN=chat.example.com \
       campfire
 
 ## Running in development
 
-    bin/setup
-    bin/rails server
+    mise x ruby@3.4.5 -- bin/setup
+    mise x ruby@3.4.5 -- bin/rails server
+
+## Security and quality checks
+
+    mise x ruby@3.4.5 -- bin/rubocop
+    mise x ruby@3.4.5 -- bin/brakeman
+    mise x ruby@3.4.5 -- bin/bundler-audit check --update
 
 ## Worth Noting
 

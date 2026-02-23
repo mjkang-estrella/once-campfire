@@ -23,6 +23,9 @@ jobs:
       - name: Scan for security vulnerabilities
         run: bin/brakeman
 
+      - name: Scan Ruby dependencies for known CVEs
+        run: bin/bundler-audit check --update
+
   lint:
     runs-on: ubuntu-latest
     steps:

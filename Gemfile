@@ -12,11 +12,11 @@ gem "sqlite3"
 gem "redis", "~> 5.4"
 
 # Deployment
-gem "puma", "~> 6.6"
+gem "puma", "~> 7.2"
 
 # Jobs
-gem "resque", "~> 2.7.0"
-gem "resque-pool", "~> 0.7.1"
+gem "resque", "~> 3.0"
+gem "resque-pool", "~> 0.8.0"
 
 # Assets
 gem "propshaft", github: "rails/propshaft"
@@ -50,6 +50,7 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
   gem "faker", require: false
   gem "brakeman", require: false
+  gem "bundler-audit", require: false
 end
 
 group :test do

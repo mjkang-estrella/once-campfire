@@ -87,7 +87,9 @@ step "Preparing the database" rails db:prepare
 
 # Start Redis if not running
 if ! redis_running; then
-  if command -v docker &>/dev/null; then
+  if command -v redis-server &>/dev/null; then
+    step "Starting Redis" redis-server "$app_root/config/redis.conf" --daemonize yes
+  elif command -v docker &>/dev/null && docker info &>/dev/null; then
     if docker ps -aq -f name=campfire-redis | grep -q .; then
       step "Starting Redis" docker start campfire-redis
     else
@@ -95,7 +97,7 @@ if ! redis_running; then
     fi
   else
     echo "Couldn't start Redis"
-    echo "Install either docker or redis and then run this command again"
+    echo "Install redis-server or start Docker daemon and run this command again"
     exit 1
   fi
 fi

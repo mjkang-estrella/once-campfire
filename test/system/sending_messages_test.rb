@@ -33,10 +33,12 @@ class SendingMessagesTest < ApplicationSystemTestCase
     end
 
     within_message messages(:third) do
-      reveal_message_actions
-      find(".message__edit-btn").click
-      fill_in_rich_text_area "message_body", with: "Redacted!"
-      click_on "Save changes"
+      with_stale_retry do
+        reveal_message_actions
+        find(".message__edit-btn").click
+        fill_in_rich_text_area "message_body", with: "Redacted!"
+        click_on "Save changes"
+      end
     end
 
     using_session("Kevin") do
@@ -55,11 +57,13 @@ class SendingMessagesTest < ApplicationSystemTestCase
     end
 
     within_message messages(:third) do
-      reveal_message_actions
-      find(".message__edit-btn").click
+      with_stale_retry do
+        reveal_message_actions
+        find(".message__edit-btn").click
 
-      accept_confirm do
-        click_on "Delete message"
+        accept_confirm do
+          click_on "Delete message"
+        end
       end
     end
 

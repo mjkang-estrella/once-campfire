@@ -2,7 +2,11 @@ ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 
 require "rails/test_help"
-require "minitest/unit"
+begin
+  require "minitest/test"
+rescue LoadError
+  require "minitest/unit"
+end
 require "mocha/minitest"
 require "webmock/minitest"
 require "turbo/broadcastable/test_helper"
