@@ -1,6 +1,7 @@
 /* Composer */
 .composer {
   flex: none;
+  min-inline-size: 0;
   padding: var(--block-space-half) calc(var(--inline-space) + 1vw);
 }
 
@@ -152,8 +153,29 @@
 }
 
 .composer__input {
+  min-inline-size: 0;
+
+  > .flex {
+    min-inline-size: 0;
+  }
+
   .composer__rich-text-btn,
   label:has(input[type="file"]) {
     cursor: pointer;
+  }
+}
+
+@media (max-width: 100ch) {
+  .composer {
+    column-gap: var(--inline-space-half);
+  }
+
+  .composer__input {
+    --input-border-radius: 1rem;
+
+    trix-editor.input {
+      max-block-size: 8lh;
+      overflow-y: auto;
+    }
   }
 }

@@ -1,6 +1,6 @@
 <% cache boost do %>
   <div id="<%= dom_id(boost) %>"
-      class="boost boost-item flex-inline postion--relative max-width align-center fill-white gap"
+      class="boost boost-item flex-inline position-relative max-width align-center fill-white gap"
       data-controller="boost-delete" data-boost-delete-perform-class="boost--deleting" data-boost-delete-reveal-class="expanded" data-boost-delete-booster-id-value="<%= boost.booster.id %>">
     <figure class="avatar boost__avatar flex-item-no-shrink">
       <%= avatar_tag boost.booster, aria: { label: "#{boost.booster.name} boosted #{boost.content}" } %>

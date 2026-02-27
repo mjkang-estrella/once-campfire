@@ -10,13 +10,13 @@
       <%= composer_form_tag(room) do |form| %>
         <fieldset data-composer-target="fields" contents>
           <div class="flex flex-column">
-            <div class="composer__filelist flex flex--align-center gap flex-wrap" data-composer-target="fileList"></div>
+            <div class="composer__filelist flex align-center gap flex-wrap" data-composer-target="fileList"></div>
 
             <div class="flex composer__input input input--actor fill-white min-width" style="--input-border-radius: 1.3rem">
-              <div class="flex align-end gap full-width">
+              <div class="flex align-end gap full-width min-width mobile-wrap">
                 <%= image_tag "messages-outlined.svg", size: 22, aria: { hidden: "true" }, class: "composer__input-hint colorize--black", style: "view-transition-name: input-btn;" %>
 
-                <div class="flex flex-column flex-item-grow min-width gap">
+                <div class="flex flex-column flex-item-grow min-width gap mobile-full-width">
                   <%= form.rich_text_area :body,
                         rows: 1,
                         class: "input",

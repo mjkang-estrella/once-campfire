@@ -2,9 +2,10 @@
   --panel-width: 50ch;
   --panel-padding: 1em;
 
-  inline-size: var(--panel-width);
+  inline-size: min(var(--panel-width), calc(100dvw - (var(--inline-space) * 2)));
   margin: calc(var(--navbar-height) - var(--block-space)) auto var(--block-space);
-  max-inline-size: 100vw;
+  max-inline-size: calc(100dvw - (var(--inline-space) * 2));
+  overflow-x: clip;
   padding: var(--panel-padding);
 
   @media (min-width: 100ch) {
@@ -31,4 +32,10 @@
   inset-block-start: var(--block-space);
   inset-inline-start: var(--block-space);
   position: absolute;
+
+  @media (max-width: 100ch) {
+    inset: auto;
+    margin-inline: auto;
+    position: static;
+  }
 }

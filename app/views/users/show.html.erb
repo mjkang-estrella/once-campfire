@@ -22,7 +22,7 @@
     </div>
 
     <% if @user.bot? %>
-      <div class="pad-double--inline push--inline push--block-start">
+      <div class="pad-inline-double margin-inline margin-block-start">
         <% if @user.active? %>
           <%= button_to_direct_room_with @user%>
         <% else %>

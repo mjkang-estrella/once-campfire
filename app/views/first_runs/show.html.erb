@@ -2,7 +2,7 @@
 <% @body_class = "signup" %>
 
 <%= form_with model: @user, url: first_run_path, class: "center max-width" do |form| %>
-  <section class="nametag u-relative">
+  <section class="nametag position-relative">
     <div class="flex justify-center align-center pad-block">
       <%= image_tag "lanyard.svg", class: "nametag__lanyard", aria: { hidden: "true" } %>
     </div>
@@ -26,26 +26,26 @@
         </label>
       </fieldset>
 
-      <div class="flex align-center gap">
+      <div class="flex align-center gap mobile-stack mobile-align-start">
         <%= translation_button(:user_name) %>
-        <label class="flex align-center gap flex-item-grow txt-large input input--actor">
+        <label class="flex align-center gap flex-item-grow txt-large input input--actor mobile-full-width">
           <%= form.text_field :name, class: "input", autocomplete: "name", placeholder: "Name", autofocus: true, required: true,
                 data: { "1p-ignore": true } %>
           <%= image_tag "person.svg", aria: { hidden: "true" }, size: 24, class: "colorize--black" %>
         </label>
       </div>
 
-      <div class="flex align-center gap">
+      <div class="flex align-center gap mobile-stack mobile-align-start">
         <%= translation_button(:email_address) %>
-        <label class="flex align-center gap flex-item-grow txt-large input input--actor">
+        <label class="flex align-center gap flex-item-grow txt-large input input--actor mobile-full-width">
           <%= form.email_field :email_address, class: "input", autocomplete: "username", placeholder: "Email address", required: true %>
           <%= image_tag "email.svg", aria: { hidden: "true" }, size: 24, class: "colorize--black" %>
         </label>
       </div>
 
-      <div class="flex align-center gap">
+      <div class="flex align-center gap mobile-stack mobile-align-start">
         <%= translation_button(:password) %>
-        <label class="flex align-center gap flex-item-grow txt-large input input--actor">
+        <label class="flex align-center gap flex-item-grow txt-large input input--actor mobile-full-width">
           <%= form.password_field :password, class: "input", autocomplete: "new-password", placeholder: "Password", required: true, maxlength: 72 %>
           <%= image_tag "password.svg", aria: { hidden: "true" }, size: 24, class: "colorize--black" %>
         </label>

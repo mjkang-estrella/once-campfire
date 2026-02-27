@@ -18,9 +18,9 @@
       <label for="session_transfer_url" class="for-screen-reader">Use this link to login automatically on another device</label>
     <% end %>
 
-    <input type="text" class="input" value="<%= url %>" id="session_transfer_url" readonly>
+    <input type="text" class="input full-width" value="<%= url %>" id="session_transfer_url" readonly>
 
-    <div class="flex align-center center gap">
+    <div class="flex align-center center gap mobile-wrap">
       <%= link_to_zoom_qr_code(url) do %>
         <span class="for-screen-reader">Show auto-login QR code</span>
         <%= image_tag "qr-code.svg", aria: { hidden: "true" }, size: 20, class: "colorize--black" %>

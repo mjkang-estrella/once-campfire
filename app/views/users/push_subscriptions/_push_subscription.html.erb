@@ -4,10 +4,10 @@
     <strong><%= agent.browser %> <%= agent.version %> on <%= agent.platform %></strong><br>
   </span>
 
-  <span class="flex align-start gap txt-small">
-    <span><%= push_subscription.endpoint %></span>
+  <span class="flex align-start gap txt-small mobile-stack mobile-align-start">
+    <span class="wrap-anywhere"><%= push_subscription.endpoint %></span>
 
-    <span class="flex align-center gap">
+    <span class="flex align-center gap mobile-wrap">
       <%= button_to user_push_subscription_test_notifications_path(push_subscription), class: "btn btn--reversed" do %>
         <%= image_tag "notification-bell-everything.svg", aria: { hidden: "true" }, size: 20 %>
         <span class="for-screen-reader">Send test notification</span>

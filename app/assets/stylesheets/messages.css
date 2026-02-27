@@ -74,6 +74,8 @@
   display: grid;
   flex: 1;
   grid-auto-rows: min-content;
+  min-inline-size: 0;
+  overflow-x: clip;
   overflow-y: auto;
   overscroll-behavior: contain;
   position: relative;
@@ -95,6 +97,8 @@
   grid-template-areas:
     "sep sep sep"
     "avatar body body";
+  max-inline-size: 100%;
+  min-inline-size: 0;
   padding-inline: calc(var(--inline-space) + 1vw);
   position: relative;
   row-gap: var(--message-row-gap);
@@ -216,8 +220,14 @@
     align-items: center;
     column-gap: calc(var(--message-column-gap) / 2);
     display: inline-flex;
+    flex-wrap: wrap;
     margin: 0;
     min-inline-size: 0;
+  }
+
+  @media (max-width: 100ch) {
+    flex-wrap: wrap;
+    row-gap: calc(var(--message-row-gap) * 2);
   }
 
   .message__actions {
@@ -252,7 +262,10 @@
   color: var(--color-text);
   font-size: 0.8rem;
   font-weight: 400;
+  max-inline-size: 100%;
   opacity: 0.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
   text-decoration: none;
   white-space: nowrap;
 }
@@ -262,6 +275,7 @@
   display: flex;
   grid-area: body;
   max-inline-size: min(80ch, 85%);
+  min-inline-size: 0;
   position: relative;
 
   .message--me & {
@@ -281,6 +295,7 @@
   inline-size: fit-content;
   margin-block-end: var(--message-row-gap);
   max-inline-size: 100%;
+  min-inline-size: 0;
   padding: var(--content-padding-block) var(--content-padding-inline);
   position: relative;
   word-break: break-word;
@@ -413,6 +428,7 @@ img.message__attachment {
   border-radius: calc(var(--arrow-size) / 2);
   display: none;
   inset: var(--btn-size) auto auto 50%;
+  max-inline-size: min(calc(100dvw - (var(--inline-space) * 2)), 26rem);
   padding: var(--inline-space-half);
   position: absolute;
   transform: translateX(-50%);
@@ -446,6 +462,17 @@ img.message__attachment {
 
   @media (max-width: 100ch) {
     inset-block-start: calc(var(--btn-size) / 1.5);
+    inset-inline-end: 0;
+    inset-inline-start: auto;
+    transform: none;
+    transform-origin: top right;
+
+    &::before,
+    &::after {
+      inset-inline-end: 1em;
+      inset-inline-start: auto;
+      transform: none;
+    }
   }
 
   .popup-orientation-top & {
@@ -467,6 +494,7 @@ img.message__attachment {
 
     @media (max-width: 100ch) {
       inset-block-end: calc(var(--btn-size) / 1.5);
+      transform-origin: bottom right;
     }
   }
 }

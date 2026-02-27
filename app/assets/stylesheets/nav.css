@@ -4,6 +4,7 @@
   display: flex;
   inset: 0 0 auto 0;
   inset-inline-end: var(--sidebar-width);
+  min-inline-size: 0;
   padding-block: var(--block-space);
   padding-inline: calc(var(--inline-space) * 1.5) var(--inline-space-double);
   pointer-events: none;
@@ -11,8 +12,18 @@
   row-gap: var(--block-space);
   z-index: 2;
 
+  > * {
+    min-inline-size: 0;
+  }
+
   &:has(.room--current) {
     padding-inline: var(--inline-space);
+
+    .room--current {
+      flex: 1;
+      max-inline-size: 100%;
+      min-inline-size: 0;
+    }
 
     @media (min-width: 100ch) {
       margin-inline-start: 5vw;
@@ -34,6 +45,7 @@
   .sidebar & {
     @media (max-width: 100ch) {
       padding-block: var(--block-space-half);
+      padding-inline-end: var(--inline-space);
 
       &::before {
         background: linear-gradient(180deg, oklch(var(--lch-white)) 20%, oklch(var(--lch-white) / 0) 100%);

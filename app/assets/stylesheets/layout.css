@@ -8,12 +8,15 @@ body {
   --sidebar-width: 0vw;
 
   display: grid;
+  inline-size: 100%;
   grid-template-areas:
     "nav sidebar"
     "main sidebar";
   grid-template-columns: 1fr var(--sidebar-width);
   grid-template-rows: min-content 1fr;
   max-block-size: 100dvh;
+  max-inline-size: 100dvw;
+  overflow-x: clip;
 
   &.sidebar {
     @media (min-width: 100ch) {
@@ -61,6 +64,8 @@ body {
   flex-direction: column;
   grid-area: main;
   overflow: auto;
+  overflow-x: clip;
+  min-inline-size: 0;
   position: relative;
 
   .sidebar & {
@@ -75,6 +80,7 @@ body {
 
 #sidebar {
   grid-area: sidebar;
+  max-inline-size: 100dvw;
   position: relative;
   transition: transform 300ms ease;
 
@@ -87,7 +93,9 @@ body {
     z-index: 3;
 
     @media (max-width: 100ch) {
+      inline-size: 100%;
       inset: 0;
+      pointer-events: none;
       position: fixed;
       transform: translate(100%);
     }
@@ -95,6 +103,7 @@ body {
 
   &.open {
     @media (max-width: 100ch) {
+      pointer-events: auto;
       transform: translate(0);
     }
   }

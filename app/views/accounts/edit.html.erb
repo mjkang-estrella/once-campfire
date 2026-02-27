@@ -6,7 +6,7 @@
   </div>
 
   <% if Current.user.administrator? %>
-    <div class="flex align-center gap flex-item-justify-end">
+    <div class="flex align-center gap flex-item-justify-end mobile-wrap">
       <%= link_to account_bots_path, class: "btn", style: "view-transition-name: chat-bots" do %>
         <%= image_tag "bot.svg", aria: { hidden: "true" }, size: 20 %>
         <span class="for-screen-reader">Set up chat bots</span>
@@ -22,8 +22,8 @@
 
 <section class="panel txt-align-center flex flex-column gap" style="view-transition-name: account-settings">
   <% if Current.user.can_administer? %>
-    <div class="align-center center avatar__form gap" data-controller="upload-preview">
-      <%= form_with model: @account, method: :patch, class: "txt--medium", data: { controller: "form" } do |form| %>
+    <div class="align-center center avatar__form gap mobile-wrap" data-controller="upload-preview">
+      <%= form_with model: @account, method: :patch, class: "txt-medium", data: { controller: "form" } do |form| %>
         <label class="btn input--file">
           <%= image_tag "camera.svg", aria: { hidden: "true" }, size: 20 %>
           <%= form.file_field :logo, class: "input", accept: "image/*",
@@ -50,10 +50,10 @@
     </div>
 
     <%= form_with model: @account, data: { controller: "form" }, class: "flex flex-column gap" do |form| %>
-      <div class="flex align-center gap">
+      <div class="flex align-center gap mobile-stack mobile-align-start">
         <%= translation_button(:account_name) %>
 
-        <label class="flex align-center gap flex-item-grow">
+        <label class="flex align-center gap flex-item-grow mobile-full-width">
           <%= form.text_field :name, class: "input txt-large", autocomplete: "off", placeholder: "Name this account", autofocus: true,
                 data: { action: "keydown.enter->form#submit" } %>
         </label>
@@ -66,8 +66,8 @@
     <% end %>
 
     <div class="margin-block-start pad-block pad-inline-double fill-shade border-radius">
-      <%= form_with model: @account, method: :put, data: { controller: "form" }, class: "flex align-center gap center" do |form| %>
-        <div class="flex-item-grow flex align-center gap txt-align-start">
+      <%= form_with model: @account, method: :put, data: { controller: "form" }, class: "flex align-center gap center mobile-stack mobile-align-start" do |form| %>
+        <div class="flex-item-grow flex align-center gap txt-align-start mobile-full-width">
           <%= image_tag "crown.svg", class: "colorize--black", aria: { hidden: "true" }, size: 18 %> Must be admin to create new rooms
         </div>
         <%= form.fields_for :settings, @account.settings do |settings_form| %>

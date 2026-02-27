@@ -20,7 +20,7 @@
 <section class="panel flex flex-column gap" style="view-transition-name: avatar-<%= @user.id %>">
   <%= render partial: "pwa/install_instructions" %>
 
-  <div class="align-center center avatar__form gap" data-controller="upload-preview">
+  <div class="align-center center avatar__form gap mobile-wrap" data-controller="upload-preview">
     <%= profile_form_with @user, class:"txt-medium" do |form| %>
       <label class="btn input--file">
         <%= image_tag "camera.svg", aria: { hidden: "true" }, size: 20 %>
@@ -49,40 +49,40 @@
 
   <%= profile_form_with @user do |form| %>
     <div class="flex flex-column gap">
-      <div class="flex align-center gap">
+      <div class="flex align-center gap mobile-stack mobile-align-start">
         <%= translation_button(:user_name) %>
 
-        <label class="flex align-center gap flex-item-grow input input--actor">
+        <label class="flex align-center gap flex-item-grow input input--actor mobile-full-width">
           <%= form.text_field :name, class: "input txt-large ", autocomplete: "name", placeholder: "Enter your name",
                 autofocus: true, required: true,  data: { "1p-ignore": true } %>
           <%= image_tag "person.svg", aria: { hidden: "true" }, size: 24, class: "colorize--black" %>
         </label>
       </div>
 
-      <div class="flex align-center gap">
+      <div class="flex align-center gap mobile-stack mobile-align-start">
         <%= translation_button(:email_address) %>
 
-        <label class="flex align-center gap flex-item-grow input input--actor">
+        <label class="flex align-center gap flex-item-grow input input--actor mobile-full-width">
           <%= form.email_field :email_address, class: "input txt-large", value: @user.email_address, autocomplete: "username",
                 placeholder: "Enter your email address", required: false %>
           <%= image_tag "email.svg", aria: { hidden: "true" }, size: 24, class: "colorize--black" %>
         </label>
       </div>
 
-      <div class="flex align-center gap">
+      <div class="flex align-center gap mobile-stack mobile-align-start">
         <%= translation_button(:update_password) %>
 
-        <label class="flex align-center gap flex-item-grow input input--actor">
+        <label class="flex align-center gap flex-item-grow input input--actor mobile-full-width">
           <%= form.password_field :password, class: "input txt-large", autocomplete: "new-password", placeholder: "Change password",
                 required: false, maxlength: 72 %>
           <%= image_tag "password.svg", aria: { hidden: "true" }, size: 24, class: "colorize--black" %>
         </label>
       </div>
 
-      <div class="flex align-start gap">
+      <div class="flex align-start gap mobile-stack mobile-align-start">
         <%= translation_button(:bio) %>
 
-        <label class="flex align--center gap flex-item--grow input input--actor">
+        <label class="flex align-center gap flex-item-grow input input--actor mobile-full-width">
           <%= form.text_area :bio, class: "input txt-large", placeholder: "A few words about yourself…", maxlength: 200,
                 rows: 3, required: false %>
           <%= image_tag "bio.svg", aria: { hidden: "true" }, size: 24, class: "colorize--black" %>

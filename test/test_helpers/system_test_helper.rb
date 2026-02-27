@@ -1,4 +1,9 @@
 module SystemTestHelper
+  MOBILE_VIEWPORTS = [
+    [ 375, 812 ],
+    [ 430, 932 ]
+  ].freeze
+
   def sign_in(email_address, password = "secret123456")
     visit root_url
 
@@ -58,6 +63,32 @@ module SystemTestHelper
     if page.has_css?("[data-pwa-install-target~='dialog']", visible: :visible, wait: 5)
       click_on("Close")
     end
+  end
+
+  def each_mobile_viewport(&block)
+    MOBILE_VIEWPORTS.each do |width, height|
+      with_mobile_viewport(width: width, height: height) do
+        block.call(width, height)
+      end
+    end
+  end
+
+  def with_mobile_viewport(width:, height:)
+    original_size = page.driver.browser.manage.window.size
+    page.driver.browser.manage.window.resize_to(width, height)
+    yield
+  ensure
+    page.driver.browser.manage.window.resize_to(original_size.width, original_size.height)
+  end
+
+  def assert_no_horizontal_overflow
+    assert page.evaluate_script("document.documentElement.scrollWidth <= window.innerWidth + 1"), "Document overflowed horizontally"
+    assert page.evaluate_script("document.body.scrollWidth <= window.innerWidth + 1"), "Body overflowed horizontally"
+  end
+
+  def open_sidebar
+    find("#sidebar .sidebar__toggle", visible: :all).click
+    assert_selector "#sidebar.open", visible: :all, wait: 5
   end
 
   private

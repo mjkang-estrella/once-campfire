@@ -6,4 +6,8 @@ export default class extends Controller {
   toggle() {
     this.element.classList.toggle(this.toggleClass)
   }
+
+  remove() {
+    this.element.classList.remove(this.toggleClass)
+  }
 }

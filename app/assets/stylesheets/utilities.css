@@ -52,6 +52,20 @@
 .flex-item-justify-start { margin-inline-end: auto; }
 .flex-item-justify-end { margin-inline-start: auto; }
 
+/* Mobile layout helpers */
+@media (max-width: 100ch) {
+  .mobile-stack {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .mobile-wrap { flex-wrap: wrap; }
+  .mobile-align-start { align-items: start; }
+  .mobile-justify-start { justify-content: start; }
+  .mobile-full-width { inline-size: 100%; max-inline-size: 100%; }
+  .mobile-order-first { order: -1; }
+}
+
 .gap {
   column-gap: var(--column-gap, var(--inline-space));
   row-gap: var(--row-gap, var(--block-space));
@@ -75,9 +89,10 @@
 .overflow-y { overflow-y: auto; scroll-snap-type: y mandatory; scroll-behavior: smooth; }
 .overflow-clip { text-overflow: clip; white-space: nowrap; overflow: hidden; }
 .overflow-ellipsis { text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
+.wrap-anywhere { overflow-wrap: anywhere; word-break: break-word; }
 
 .overflow-hide-scrollbar::-webkit-scrollbar {
-  @media (pointer: course) {
+  @media (pointer: coarse) {
     display: none;
   }
 }

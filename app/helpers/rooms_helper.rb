@@ -1,8 +1,14 @@
 module RoomsHelper
   def link_to_room(room, **attributes, &)
-    link_to room_path(room), **attributes, data: {
+    data = {
       rooms_list_target: "room", room_id: room.id, badge_dot_target: "unread", sorted_list_target: "item"
-    }.merge(attributes.delete(:data) || {}), &
+    }.merge(attributes.delete(:data) || {})
+
+    actions = data[:action].to_s.split
+    actions << "click->toggle-class#remove" unless actions.include?("click->toggle-class#remove")
+    data[:action] = actions.join(" ")
+
+    link_to room_path(room), **attributes, data: data, &
   end
 
   def link_to_edit_room(room, &)
